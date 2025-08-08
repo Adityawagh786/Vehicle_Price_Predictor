@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vehicle Price Predictor</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mozilla+Headline:wght@200..700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: "Mozilla Headline", sans-serif;
+            font-optical-sizing: auto;
+            background-color: #877ff7;
+            margin: 0;
+            padding: 20px;
+        }
+        .header{
+            display: flex;
+            padding-bottom: 30px;
+            justify-content: space-around;
+            align-items: center;
+            padding-right: 40px ;
+            
+        }
+        .header img{
+            width:70px;
+            height: auto;
+            padding-left: 70px;
+            justify-content: center;
+            align-items: center;
+        }
+    
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: rgb(255, 255, 255);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        label {
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input[type="text"],
+        input[type="number"] {
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+        button {
+            padding: 10px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        small {
+            color: #666;
+        }
+        #result {
+            margin-top: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+        <img src="car.svg" alt="Vehicle Price Predictor Logo" >
+        <h1>Vehicle Price Predictor</h1>
+        </div>
+        <form action="/predict" method="post">
+
+    <label>Make (Brand)</label>
+    <input type="text" name="make" placeholder="e.g., Toyota, BMW, Ford" required>
+    <small>Enter the brand/manufacturer of the vehicle.</small><br><br>
+
+    <label>Model</label>
+    <input type="text" name="model" placeholder="e.g., Camry, Model 3, F-150" required>
+    <small>Enter the specific model name.</small><br><br>
+
+    <label>Year</label>
+    <input type="number" name="year" placeholder="e.g., 2020" min="1980" max="2025" required>
+    <small>Enter the manufacturing year of the vehicle.</small><br><br>
+
+    <label>Engine</label>
+    <input type="text" name="engine" placeholder="e.g., 2.0L, Electric, 3.0L Turbo">
+    <small>Specify the engine type and capacity.</small><br><br>
+
+    <label>Cylinders</label>
+    <input type="number" name="cylinders" placeholder="e.g., 4, 6, 8">
+    <small>Number of cylinders (0 for electric cars).</small><br><br>
+
+    <label>Fuel Type</label>
+    <input type="text" name="fuel" placeholder="e.g., Gasoline, Diesel, Electric">
+    <small>Type of fuel used by the vehicle.</small><br><br>
+
+    <label>Mileage</label>
+    <input type="number" name="mileage" placeholder="e.g., 35000" min="0">
+    <small>Total distance driven in miles.</small><br><br>
+
+    <label>Transmission</label>
+    <input type="text" name="transmission" placeholder="e.g., Automatic, Manual">
+    <small>Type of transmission.</small><br><br>
+
+    <label>Trim</label>
+    <input type="text" name="trim" placeholder="e.g., LE, Lariat, Long Range">
+    <small>Specific trim/variant of the model.</small><br><br>
+
+    <label>Body Type</label>
+    <input type="text" name="body" placeholder="e.g., Sedan, SUV, Pickup">
+    <small>Type of body style.</small><br><br>
+
+    <label>Doors</label>
+    <input type="number" name="doors" placeholder="e.g., 2, 4">
+    <small>Number of doors.</small><br><br>
+
+    <label>Exterior Color</label>
+    <input type="text" name="exterior_color" placeholder="e.g., White, Black, Red">
+    <small>Main exterior color of the vehicle.</small><br><br>
+
+    <label>Interior Color</label>
+    <input type="text" name="interior_color" placeholder="e.g., Black, Beige">
+    <small>Main interior color of the vehicle.</small><br><br>
+
+    <label>Drivetrain</label>
+    <input type="text" name="drivetrain" placeholder="e.g., FWD, AWD, 4WD">
+    <small>Type of drivetrain system.</small><br><br>
+
+    <button type="submit">Predict Price</button>
+</form>
+
+        <div id="result">
+             {% if prediction_text %}
+            <div id="result">{{ prediction_text }}</div>
+        {% endif %}
+        </div>
+    </div>
+</body>
+</html>
